@@ -1,21 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+}
 
 function Counter() {
-  const [number, setNumber] = useState(0);
+  const [state, dispatch] = useReducer(reducer, 0);
 
-  const onIncrease = () => {
-    setNumber(() => number + 1);
+  const onIncrement = () => {
+    dispatch({
+      type: 'INCREMENT',
+    });
   };
 
-  const onDecrease = () => {
-    setNumber(number - 1);
+  const onDecrement = () => {
+    dispatch({
+      type: 'DECREMENT',
+    });
   };
 
   return (
     <div>
-      <div>현재 숫자: {number}</div>
-      <button onClick={onIncrease}>+1</button>
-      <button onClick={onDecrease}>-1</button>
+      <div>현재 숫자: {state}</div>
+      <button onClick={onIncrement}>+1</button>
+      <button onClick={onDecrement}>-1</button>
     </div>
   );
 }

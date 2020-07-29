@@ -1,8 +1,6 @@
 import React from 'react';
 
-function Input({ inputs, onInputChange, onAdd }) {
-  const { name, email } = inputs;
-
+function Input({ name, email, onInputChange, onAdd }) {
   return (
     <form onSubmit={onAdd}>
       <input
